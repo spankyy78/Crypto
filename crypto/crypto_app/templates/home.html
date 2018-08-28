@@ -8,7 +8,7 @@
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
   <p>You are not logged in</p>
-  <a href="{% url 'login' %}">sign in or </a>
+  <a href="{% url 'login' %}">sign in</a> |
   <a href="{% url 'signup' %}">sign up</a>
 {% endif %}
 {% endblock %}

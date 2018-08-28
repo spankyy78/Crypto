@@ -16,7 +16,6 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic.base import TemplateView
 
 from crypto_app import views
 
@@ -24,5 +23,5 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url('signup/', views.signup, name='signup'),
+    url('signup/', views.SignUp.as_view(), name='signup'),
 ]

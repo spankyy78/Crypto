@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 from datetime import datetime
 
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic, View
@@ -39,29 +40,32 @@ class UsersFormView(View):
 
         return render(request, 'home.html',)
 
-class NotificationFormView(View):
+class NotificationFormView(LoginRequiredMixin, View):
     form_class = NotificationForm
     template = 'notification.html'
 
-    @login_required(login_url="/accounts/login")
     def get(self, request):
         form = self.form_class(None)
-        return render(request, self.template, { 'form': form })
+        return render(request, self.template, {'form': form})
 
-    @login_required(login_url="/accounts/login")
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
             notification = form.save(commit=False)
+            notification.user = request.user
             notification.added_at = datetime.now()
             notification.save()
 
-        return render(request, 'notification.html')
+        return redirect('home')
 
-    #@login_required(login_url="/accounts/login")
-    #def put(self, request):
+    def put(self, request, pk):
+        notification = self.get_object(pk)
+        form = self.form_class(request.POST)
+        if notification.is_valid():
+            notification.save()
 
-    #@login_required(login_url="/accounts/login")
+        return redirect('home')
+
     #def delete(self, request):
 
 def connect(request):
@@ -77,7 +81,7 @@ def connect(request):
             else:
                 return redirect('home')
 
-    return render(request, 'registration/login.html', {'form': form })
+    return render(request, 'registration/login', {'form': form})
 
 def home(request):
     return render(request, 'home.html')

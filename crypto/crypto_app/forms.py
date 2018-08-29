@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Users, Notification
+from .models import Users, Notification, ORDER_CHOICES, CURRENCY_CHOICES
 
 
 class UserForm(ModelForm):
@@ -19,8 +19,8 @@ class LoginForm(ModelForm):
         fields = ['username', 'password']
 
 class NotificationForm(ModelForm):
-    currency = forms.ChoiceField()
-    order = forms.ChoiceField()
+    currency = forms.ChoiceField(choices=CURRENCY_CHOICES, label="", initial='', widget=forms.Select(), required=True)
+    order = forms.ChoiceField(choices=ORDER_CHOICES, label="", initial='', widget=forms.Select(), required=True)
 
     class Meta:
         model = Notification

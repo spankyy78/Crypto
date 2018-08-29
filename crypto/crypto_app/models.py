@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 
+
 # Create your models here.
 
 class Users(AbstractUser):
@@ -18,6 +19,7 @@ class Users(AbstractUser):
 
     REQUIRED_FIELDS = ['email', 'password']
     USERNAME_FIELD = 'username'
+
 
 CURRENCY_CHOICES = (
     ('BTC', 'BTC'),
@@ -35,13 +37,18 @@ ORDER_CHOICES = (
     ('DOWN', 'down')
 )
 
+
 class Notification(models.Model):
-    user = models.ForeignKey(Users)
+    user = models.ForeignKey(Users, default=None)
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES)
     order = models.CharField(max_length=4, choices=ORDER_CHOICES)
     value = models.DecimalField(max_digits=19, decimal_places=2)
     added_at = models.TimeField(auto_created=True)
-    closed_at = models.TimeField()
 
-    def __str(self):
-        return self.user
+    # def __init__(self, currency, order, value):
+    #    self.currency = currency
+    #    self.order = order
+    #    self.value = value
+
+    def __str__(self):
+        return self.currency

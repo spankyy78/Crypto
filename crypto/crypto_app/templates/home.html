@@ -3,13 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <h1>{{ user.username }}</h1>
-  <p><a href="{% url 'logout' %}">logout</a></p>
-{% else %}
-  <p>Welcome to Crypto web app!</p>
-  <a href="{% url 'login' %}">sign in</a> |
-  <a href="{% url 'signup' %}">sign up</a>
+    {% if user.is_authenticated %}
+        <h1>{{ user.username }}</h1>
+        <p><a href="{% url 'logout' %}">logout</a></p>
+    {% else %}
+        <p>Welcome to Crypto web app!</p>
+        <a href="{% url 'login' %}">sign in</a>
+        <a href="{% url 'signup' %}">sign up</a>
 {% endif %}
-    <button type="button">Notification</button>
+        <a href="notification"><button type="button">Notification</button></ahref>
 {% endblock %}

@@ -32,9 +32,9 @@ class UsersFormView(View):
 
             if user is not None and user.is_active:
                 login(request, user)
-                redirect('home.html')
+                return redirect('home')
 
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'home.html',)
 
 def home(request):
     return render(request, 'home.html')

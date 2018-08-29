@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
-from coinbase.wallet.model import User
 
 # Create your models here.
 
 class Users(AbstractUser):
-    # add additional fields in here
-
-    description = models.TextField(max_length=255, default='')
+    username = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(default=None, unique=True)
+    password = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.email
+        return self.username
+
+    REQUIRED_FIELDS = ['email', 'password']
+    USERNAME_FIELD = 'username'

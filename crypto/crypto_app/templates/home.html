@@ -4,10 +4,11 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
+  <p>{{ user.username }}<p>
+  <p>Notifications:{{  }}<p>
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
-  <p>You are not logged in</p>
+  <p>Welcome to Crypto web app!</p>
   <a href="{% url 'login' %}">sign in</a> |
   <a href="{% url 'signup' %}">sign up</a>
 {% endif %}

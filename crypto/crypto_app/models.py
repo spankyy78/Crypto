@@ -18,3 +18,30 @@ class Users(AbstractUser):
 
     REQUIRED_FIELDS = ['email', 'password']
     USERNAME_FIELD = 'username'
+
+CURRENCY_CHOICES = (
+    ('BTC', 'BTC'),
+    ('BCH', 'BCH'),
+    ('ETH', 'ETH'),
+    ('ETC', 'ETC'),
+    ('LTC', 'LTC'),
+    ('USD', 'USD'),
+    ('GBP', 'GBP'),
+    ('CAD', 'CAD'),
+)
+
+ORDER_CHOICES = (
+    ('UP', 'up'),
+    ('DOWN', 'down')
+)
+
+class Notification(models.Model):
+    user = models.ForeignKey(Users)
+    currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES)
+    order = models.CharField(max_length=4, choices=ORDER_CHOICES)
+    value = models.DecimalField(max_digits=19, decimal_places=2)
+    added_at = models.TimeField(auto_created=True)
+    closed_at = models.TimeField()
+
+    def __str(self):
+        return self.user

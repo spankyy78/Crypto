@@ -22,6 +22,7 @@ from crypto_app import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
+    url(r'^login/', views.connect, name='login'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url('signup/$', views.UsersFormView.as_view(), name='signup'),
 ]

@@ -4,13 +4,12 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  <p>{{ user.username }}<p>
-  <p>Notifications:<p>
-  <button type="delete"></button>
+  <h1>{{ user.username }}</h1>
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
   <p>Welcome to Crypto web app!</p>
   <a href="{% url 'login' %}">sign in</a> |
   <a href="{% url 'signup' %}">sign up</a>
 {% endif %}
+    <button type="button">Notification</button>
 {% endblock %}

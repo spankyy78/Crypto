@@ -1,0 +1,41 @@
+This file contain what have been done and not finished for the Seelk hackathon.
+
+[Required features]
+  * REST API
+    --> User
+        - POST........................................................[OK]
+        - PUT.........................................................[OK]
+        - GET.........................................................[OK]
+        - DELETE......................................................[OK]
+        - LOGIN.......................................................[OK]
+        - LOGOUT......................................................[OK]
+    --> Alerts
+        - POST........................................................[OK]
+        - PUT.........................................................[OK]
+        - GET.........................................................[OK]
+        - DELETE......................................................[OK]
+
+  * BONUS
+    --> Front-end
+        - sign-up.....................................................[KO]
+        - login.......................................................[KO]
+        - create......................................................[KO]
+        - modify alerts...............................................[KO]
+
+[Bonus features]
+  * Multi-currency....................................................[KO]
+  * Percentage change.................................................[KO]
+
+IMPORTANT: Precisions about Notifications and user
+
+  Actually, the web application don't send email because I didn't create
+  daemon and threading system in order to check regularly currencies spot.
+  And in order to delete or modify Users informations or Alerts, you have to go
+  to the admin section at this address localhost:8000/admin. So you have to
+  create a superuser. To do that, start the virtual environment and go to the 
+  manage.py location. Then do this:
+
+  shell$ ./manage.py createsuperuser
+
+  Follow the instruction and then you can log yourself in to the admin section
+  at the previous address.

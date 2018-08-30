@@ -25,3 +25,8 @@ class NotificationForm(ModelForm):
     class Meta:
         model = Notification
         fields = ['currency', 'order', 'value']
+
+class HomeNotificationForm(ModelForm):
+    class Meta:
+        model = Notification
+        fields = ['currency', 'order', 'value']

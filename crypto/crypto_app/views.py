@@ -12,6 +12,7 @@ from django.urls import reverse_lazy
 from django.views import generic, View
 
 from crypto_app.forms import UserForm, NotificationForm, LoginForm
+from crypto_app.models import Notification
 
 
 class UsersFormView(View):
@@ -44,9 +45,11 @@ class NotificationFormView(LoginRequiredMixin, View):
     form_class = NotificationForm
     template = 'notification.html'
 
+
     def get(self, request):
+        notifications = Notification.objects.all()
         form = self.form_class(None)
-        return render(request, self.template, {'form': form})
+        return render(request, self.template, {'form': form}, {'notifications': notifications})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -81,7 +84,7 @@ def connect(request):
             else:
                 return redirect('home')
 
-    return render(request, 'registration/login', {'form': form})
+    return render(request, 'registration/login.html', {'form': form})
 
 def home(request):
     return render(request, 'home.html')

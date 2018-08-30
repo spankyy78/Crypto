@@ -45,10 +45,5 @@ class Notification(models.Model):
     value = models.DecimalField(max_digits=19, decimal_places=2)
     added_at = models.TimeField(auto_created=True)
 
-    # def __init__(self, currency, order, value):
-    #    self.currency = currency
-    #    self.order = order
-    #    self.value = value
-
     def __str__(self):
-        return self.currency
+        return '%s %s %s' % (self.currency, self.order, self.value)

@@ -3,6 +3,13 @@
 {% block title %}Notifications{% endblock %}
 
 {% block content %}
+  <a href='http://127.0.0.1:8000/'>Crypto</a>
+  <h2>Your notifications</h2>
+  {%  for notification in notifications %}
+        <li>notification</li>
+      {% empty %}
+        <p>You don't have notifications</p>
+  {%  endfor %}
   <h2>Create a new Notification</h2>
   <form method="post">
     {% csrf_token %}

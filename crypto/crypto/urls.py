@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/', views.connect, name='login'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^signup/', views.UsersFormView.as_view(), name='signup'),
+    url(r'signup/', views.UsersFormView.as_view(), name='signup'),
     url(r'^notification/', views.NotificationFormView.as_view(), name='Notification')
 ]
